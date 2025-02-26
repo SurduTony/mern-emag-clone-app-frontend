@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useLogin } from "@/api/AuthApi";
+import { Link } from "react-router-dom";
 
 export type LoginFormData = {
   email: string;
@@ -57,6 +58,13 @@ const LoginPage = () => {
       >
         Login
       </button>
+
+      <span>
+        Don't have an account?{" "}
+        <Link to="/register" className="hover:text-blue-600 underline">
+          Register here
+        </Link>
+      </span>
     </form>
   );
 };

@@ -30,8 +30,9 @@ export const useRegister = () => {
     mutationFn: registerRequest,
     onSuccess: () => {
       toast.success("Registration successful");
-      navigate("/");
       queryClient.invalidateQueries({ queryKey: ["getMyUser"] });
+      navigate("/");
+      window.location.reload();
     },
     onError: (error) => {
       toast.error(error.message);
@@ -69,8 +70,9 @@ export const useLogin = () => {
     mutationFn: loginRequest,
     onSuccess: () => {
       toast.success("Login successful");
-      navigate("/");
       queryClient.invalidateQueries({ queryKey: ["getMyUser"] });
+      navigate("/");
+      window.location.reload();
     },
     onError: (error) => {
       toast.error(error.message);
@@ -102,8 +104,10 @@ export const useLogout = () => {
     mutationFn: logoutRequest,
     onSuccess: () => {
       toast.success("Logout successful");
+      queryClient.invalidateQueries({
+        queryKey: ["getMyUser", "getFavorites"],
+      });
       navigate("/");
-      queryClient.invalidateQueries({ queryKey: ["getMyUser"] });
     },
     onError: (error) => {
       toast.error(error.message);
